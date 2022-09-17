@@ -1,0 +1,59 @@
+input[type=text].wsc-input{
+    width: 100%;
+    padding: 10px 12px;
+}
+
+label.wsc-label{
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0;
+}
+
+.wrapper{
+    width: 90%;
+    margin: 20px auto;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.15);
+
+    ul.wsc_menu{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 20px 0 10px;
+
+        li{
+
+            a{
+                background: -webkit-linear-gradient(236deg,#8fb4eb,#6772e5);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 24px;
+                font-weight: 900;
+                padding: 0 40px;
+                border-right: 1px solid;
+                border-color: rgba(103,114,229,.25);
+                
+            }
+            
+
+            &:last-child{
+                a{
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px){
+    .wrapper{
+        width: 100%;
+    }
+}
+
+.wsc_wrapper{
+    padding: 20px 0;
+}
