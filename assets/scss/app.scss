@@ -1,12 +1,15 @@
 input[type=text].wsc-input{
     width: 100%;
-    padding: 10px 12px;
 }
 
 label.wsc-label{
     display: inline-block;
     width: 100%;
     padding: 8px 0;
+}
+
+select.wsc-select{
+    width: 100%;
 }
 
 .wrapper{

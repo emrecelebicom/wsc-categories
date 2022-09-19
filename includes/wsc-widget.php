@@ -13,10 +13,10 @@ if(!class_exists("WSC_Widget"))
         {
             
             $wsc_title = !empty($instance) ? $instance['wsc_title'] : "";
-            $wsc_query_content = !empty($instance) ? $instance['wsc_query_content'] : "";
-            $wsc_query_orderby = !empty($instance) ? $instance['wsc_query_orderby'] : "";
-            $wsc_query_order = !empty($instance) ? $instance['wsc_query_order'] : "";
-            $wsc_query_list_option = !empty($instance) ? $instance['wsc_query_list_option'] : "";
+            $wsc_query_content = !empty($instance) ? $instance['wsc_query_content'] : "category";
+            $wsc_query_orderby = !empty($instance) ? $instance['wsc_query_orderby'] : "id";
+            $wsc_query_order = !empty($instance) ? $instance['wsc_query_order'] : "desc";
+            $wsc_query_list_option = !empty($instance) ? $instance['wsc_query_list_option'] : "all";
             $wsc_exclude_categories = !empty($instance) ? $instance['wsc_exclude_categories'] : "";
             $wsc_class = !empty($instance) ? $instance['wsc_class'] : "";
 
@@ -28,16 +28,14 @@ if(!class_exists("WSC_Widget"))
 
             /* Query Content */
             $content .= "<label for=\"".$this->get_field_id('wsc_query_content')."\" class=\"wsc-label\">Query Content</label>";
-            $content .= "<select id=\"".$this->get_field_id('wsc_query_content')."\" name=\"".$this->get_field_name('wsc_query_content')."\">";
-            $content .= "<option>Choose</option>";
+            $content .= "<select id=\"".$this->get_field_id('wsc_query_content')."\" name=\"".$this->get_field_name('wsc_query_content')."\" class=\"wsc-select\">";
             $content .= "<option value=\"category\"".($wsc_query_content == "category" ? " selected" : "").">Post Category</option>";
             $content .= "<option value=\"product_cat\"".($wsc_query_content == "product_cat" ? " selected" : "").">Product Category</option>";
             $content .= "</select>";
 
             /* Query Orderby */
             $content .= "<label for=\"".$this->get_field_id('wsc_query_orderby')."\" class=\"wsc-label\">Query Order</label>";
-            $content .= "<select id=\"".$this->get_field_id('wsc_query_orderby')."\" name=\"".$this->get_field_name('wsc_query_orderby')."\">";
-            $content .= "<option>Choose</option>";
+            $content .= "<select id=\"".$this->get_field_id('wsc_query_orderby')."\" name=\"".$this->get_field_name('wsc_query_orderby')."\" class=\"wsc-select\">";
             $content .= "<option value=\"id\"".($wsc_query_orderby == "id" ? " selected" : "").">id</option>";
             $content .= "<option value=\"title\"".($wsc_query_orderby == "title" ? " selected" : "").">title</option>";
             $content .= "<option value=\"name\"".($wsc_query_orderby == "name" ? " selected" : "").">name</option>";
@@ -47,16 +45,14 @@ if(!class_exists("WSC_Widget"))
 
             /* Query Order */
             $content .= "<label for=\"".$this->get_field_id('wsc_query_order')."\" class=\"wsc-label\">Query Orderby</label>";
-            $content .= "<select id=\"".$this->get_field_id('wsc_query_order')."\" name=\"".$this->get_field_name('wsc_query_order')."\">";
-            $content .= "<option>Choose</option>";
+            $content .= "<select id=\"".$this->get_field_id('wsc_query_order')."\" name=\"".$this->get_field_name('wsc_query_order')."\" class=\"wsc-select\">";
             $content .= "<option value=\"asc\"".($wsc_query_order == "asc" ? " selected" : "").">asc</option>";
             $content .= "<option value=\"desc\"".($wsc_query_order == "desc" ? " selected" : "").">desc</option>";
             $content .= "</select>";
 
             /* Query List Option */
             $content .= "<label for=\"".$this->get_field_id('wsc_query_list_option')."\" class=\"wsc-label\">Query List Option</label>";
-            $content .= "<select id=\"".$this->get_field_id('wsc_query_list_option')."\" name=\"".$this->get_field_name('wsc_query_list_option')."\">";
-            $content .= "<option>Choose</option>";
+            $content .= "<select id=\"".$this->get_field_id('wsc_query_list_option')."\" name=\"".$this->get_field_name('wsc_query_list_option')."\" class=\"wsc-select\">";
             $content .= "<option value=\"all\"".($wsc_query_list_option == "all" ? " selected" : "").">List all categories</option>";
             $content .= "<option value=\"main-categories\"".($wsc_query_list_option == "main-categories" ? " selected" : "").">List main categories</option>";
             $content .= "<option value=\"sub-categories\"".($wsc_query_list_option == "sub-categories" ? " selected" : "").">List sub categories</option>";
@@ -113,7 +109,7 @@ if(!class_exists("WSC_Widget"))
             echo "<ul>";
             foreach($this->WSC_Query($instance['wsc_query_content'], $instance['wsc_query_orderby'], $instance['wsc_query_order'], $parent_cat, $instance['wsc_exclude_categories']) as $item)
             {
-                echo "<li><a href=\"".$item->permalink."\">".$item->name."</a></li>";
+                echo "<li><a href=\"".get_category_link($item->term_id)."\">".$item->name."</a></li>";
             }
             echo "</ul>";
             echo $after_widget;
